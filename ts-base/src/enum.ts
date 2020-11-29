@@ -61,5 +61,3 @@ e1 === e3;
 
 let g1: G = G.b;
 let g2: G.a = G.a;
-
-console.log(e1 === e3);
