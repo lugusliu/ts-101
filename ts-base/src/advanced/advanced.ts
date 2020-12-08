@@ -141,3 +141,59 @@ let log2 = <U>(y: U): U => {
 };
 log1 = log2; // 泛型函数类型相同，且没有指定类型参数，那么也是可以相互兼容的
 log2 = log1;
+
+/**
+ * 类型保护
+ * TypeScript 能够在特定的区块中保证变量属于某种确定的类型
+ * 可以在此区块中放心地引用此类型的属性，或者调用此类型的方法
+ */
+enum Type {
+  Strong,
+  Week,
+}
+class Java {
+  helloJava() {
+    return "Hello Java";
+  }
+  java: any;
+}
+class JavaScript {
+  helloJavaScript() {
+    return "Hello JavaScript";
+  }
+  javascript: any;
+}
+// 4. 类型保护函数
+function isJava(lang: Java | JavaScript): lang is Java {
+  return (lang as Java).helloJava !== undefined;
+}
+function getLanguage(type: Type, x: string | number) {
+  let lang = type === Type.Strong ? new Java() : new JavaScript();
+  // 1. instanceof
+  // if (lang instanceof Java) {
+  //   lang.helloJava();
+  // } else {
+  //   lang.helloJavaScript();
+  // }
+
+  // 2. in
+  // if ("java" in lang) {
+  //   lang.helloJava();
+  // } else {
+  //   lang.helloJavaScript();
+  // }
+
+  // 3. typeof
+  // if (typeof x === "string") {
+  //   x.length;
+  // } else {
+  //   x.toFixed(2);
+  // }
+
+  if (isJava(lang)) {
+    lang.helloJava();
+  } else {
+    lang.helloJavaScript();
+  }
+  return lang;
+}
