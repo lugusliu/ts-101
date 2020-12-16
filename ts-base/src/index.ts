@@ -7,6 +7,7 @@ import "./base/class-interface";
 import "./base/generics";
 
 import "./advanced/advanced";
+import "./advanced/unions-and-intersection";
 
 let hello: string = "hello Typescript";
 document.querySelectorAll(".app")[0].textContent = hello;
