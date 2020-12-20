@@ -8,6 +8,7 @@ import "./base/generics";
 
 import "./advanced/advanced";
 import "./advanced/unions-and-intersection";
+import "./advanced/index-and-mapped";
 
 let hello: string = "hello Typescript";
 document.querySelectorAll(".app")[0].textContent = hello;
